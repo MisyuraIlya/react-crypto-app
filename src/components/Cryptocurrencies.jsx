@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
-import {Card, Row, Col, Input} from 'antd'
+import {Row, Col, Input} from 'antd'
 import { useGetCryptosQuery} from '../services/cryptoApi';
 import Loader from './Loader';
+
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 
 const Cryptocurrencies = ({simplified}) => {
     const count = simplified ? 10 : 100; //if count true set 10 
