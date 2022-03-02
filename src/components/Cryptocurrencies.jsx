@@ -11,7 +11,17 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+const bull = (
+    <Box
+      component="span"
+      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+    >
+      •
+    </Box>
+  );
 
 const Cryptocurrencies = ({simplified}) => {
     const count = simplified ? 10 : 100; //if count true set 10 
@@ -32,24 +42,36 @@ const Cryptocurrencies = ({simplified}) => {
                     </div>
                 )}
 
-                <Row gutter={[32,32]} className='crypto-card-container'>
+                <Grid container spacing={2}>
                     {cryptos?.map((currency) => (
-                        <Col xs={24} sm={12} lg={6} className='crypto-card' key={currency.uuid}>
-                            <Link key={currency.uuid} to={`/crypto/${currency.uuid}`}>
-                                <Card 
-                                    title={`${currency.rank} . ${currency.name}`}
-                                    extra={<img className='crypto-image' src={currency.iconUrl}/>}
-                                    hoverable
-                                    >
-                                    <p>Price: {millify(currency.price)}</p>
-                                    <p>Market Cap: {millify(currency.marketCap)}</p>
-                                    <p>Daily change: {millify(currency.change)}</p>
-                                </Card>
-                            </Link>
-                        </Col>
-                    ))}
+                  <Grid item xs={3}>
 
-                </Row>
+                    <Card sx={{ minWidth: 275, maxWidth: 600,ml:3 }}>
+                        <CardContent>
+                            <Stack direction="row">
+                                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                {`${currency.rank} . ${currency.name}`}
+                                </Typography>
+                                <Avatar alt="Remy Sharp" src={currency.iconUrl} />
+                             </Stack>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            Price: {millify(currency.price)}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            Market Cap: {millify(currency.marketCap)}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            Daily change: {millify(currency.change)}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small"><Link key={currency.uuid} to={`/crypto/${currency.uuid}`}>Learn More</Link></Button>
+                        </CardActions>
+                    </Card>
+                    </Grid>
+
+                    ))}
+                </Grid>
             </>
         );
     }
