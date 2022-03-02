@@ -6,6 +6,7 @@ import { useGetCryptosQuery } from '../services/cryptoApi';
 import Cryptocurrencies from './Cryptocurrencies';
 import News from './News';
 import Loader from './Loader';
+import Container from '@mui/material/Container';
 
 const { Title } = Typography
 
@@ -17,7 +18,7 @@ const Homepage = () => {
         if (isFetching) return <Loader/>
 
         return (
-            <>
+            <Container>
                 <Title level={2} className='heading'>Global Ctypto Stats</Title>
                 <Row>
                     <Col span={12}><Statistic title="Total Cryptocurrencies" value={globalStats.total}></Statistic></Col>
@@ -36,7 +37,7 @@ const Homepage = () => {
                     <Title level={2} className='show-more'><Link to='/news'>Show more</Link></Title>
                 </div>
                 <News simplified/>
-            </>
+            </Container>
         );
     }
 
