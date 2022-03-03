@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Container from '@mui/material/Container';
 const bull = (
     <Box
       component="span"
@@ -37,9 +39,19 @@ const Cryptocurrencies = ({simplified}) => {
         return (
             <>
                 {!simplified && (
-                    <div className='search-crypto' onChange={(e) => setSearchTerm(e.target.value)}>
-                         <Input placeholder='Search Cryptocurrency'/>
-                    </div>
+                    <Container sx={{mx:'auto'}}>
+                        <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          '& > :not(style)': { m: 1 },
+                          justifyContent:"center"
+                        }}
+                      >
+
+                        <TextField id="demo-helper-text-misaligned-no-helper" label="Name" onChange={(e) => setSearchTerm(e.target.value)}/>
+                        </Box>
+                    </Container>
                 )}
 
                 <Grid container spacing={2}>

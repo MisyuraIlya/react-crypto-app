@@ -27,9 +27,9 @@ const News = ({simplified}) => {
         const {data} = useGetCryptosQuery(100);
         if(!cryptoNews?.value) return <Loader/>
         return (
-                <Grid container spacing={2}>
+            <Grid container spacing={2}>
                     {cryptoNews.value.map((news,i) => (
-                  <Grid item xs={3}>
+                <Grid item xs={3}>
 
                     <Card sx={{ minWidth: 275, maxWidth: 600,ml:3 }}>
                     <CardMedia
@@ -65,9 +65,9 @@ const News = ({simplified}) => {
                         </CardContent>
                         
                     </Card>
-                    </Grid>
-                    ))}
                 </Grid>
+                    ))}
+            </Grid>
         );
 }
 
