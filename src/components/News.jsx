@@ -3,7 +3,7 @@ import React, { Component, useState } from 'react';
 import moment from 'moment';
 import { useGetCryptoNewsQuery } from '../services/CryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
-import Loader from './Loader';
+import CircularProgress from '@mui/material/CircularProgress';
 // import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -25,9 +25,11 @@ const News = ({simplified}) => {
         const [newsCategory, setNewsCategory] = useState('Cryptocurrency')
         const {data : cryptoNews} = useGetCryptoNewsQuery({newsCategory, count: simplified ? 6 : 12})
         const {data} = useGetCryptosQuery(100);
-        if(!cryptoNews?.value) return <Loader/>
+        if(!cryptoNews?.value) return  <Box sx={{ display: 'flex', justifyContent:'center' , minHeight:500  }}>
+        <CircularProgress sx={{mt:20}} />
+      </Box>
         return (
-            <Grid container spacing={2}>
+            <Grid container spacing={2} sx={{mt:5, mb:5}}>
                     {cryptoNews.value.map((news,i) => (
                 <Grid item xs={3}>
 

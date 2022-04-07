@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
-import {Row, Col, Input} from 'antd'
 import { useGetCryptosQuery} from '../services/cryptoApi';
-import Loader from './Loader';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -16,14 +15,7 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
-const bull = (
-    <Box
-      component="span"
-      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-    >
-      •
-    </Box>
-  );
+
 
 const Cryptocurrencies = ({simplified}) => {
     const count = simplified ? 10 : 100; //if count true set 10 
@@ -35,11 +27,13 @@ const Cryptocurrencies = ({simplified}) => {
         const filteredData = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
         setCryptos(filteredData)
     },[cryptosList, searchTerm])
-    if(isFetching) return <Loader/>
+    if(isFetching) return  <Box sx={{ display: 'flex', justifyContent:'center', minHeight:500}}>
+    <CircularProgress sx={{mt:20}}/>
+  </Box>
         return (
-            <>
+            <Container sx={{mt:5}}>
                 {!simplified && (
-                    <Container sx={{mx:'auto'}}>
+                    <Container sx={{mx:'auto', mb:2}}>
                         <Box
                         sx={{
                           display: 'flex',
@@ -84,7 +78,7 @@ const Cryptocurrencies = ({simplified}) => {
 
                     ))}
                 </Grid>
-            </>
+            </Container>
         );
     }
 
